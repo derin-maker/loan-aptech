@@ -1,16 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import About from './components/About';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+
+import About from "./components/About";
+import Footer from "./components/Footer";
+import Contact from "./components/Contact";
+import Privacy from "./components/Privacy";
+import Navbar from "./components/NavBar";
 
 function App() {
   return (
-    <div className="App">
-      <About />
-    </div>
-  )
+    <Router>
+      <div className="App">
+        <Navbar/>
+        <main style={{ minHeight: "100vh", paddingTop: "70px" }}>
+          <Routes>
+            <Route path="/" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy" element={<Privacy />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
