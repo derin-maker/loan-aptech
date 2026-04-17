@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Contact from "./components/Contact";
 import Privacy from "./components/Privacy";
 import Navbar from "./components/NavBar";
+import Terms from "./components/Terms";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </main>
         <Footer />
