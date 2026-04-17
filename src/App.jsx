@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Privacy from "./components/Privacy";
 import Navbar from "./components/NavBar";
 import Terms from "./components/Terms";
+import Faq from "./components/Faq";
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
         <Navbar/>
         <main style={{ minHeight: "100vh", paddingTop: "70px" }}>
           <Routes>
-            <Route path="/" element={<About />} />
+            <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/faq" element={<Faq />} />
           </Routes>
         </main>
         <Footer />
