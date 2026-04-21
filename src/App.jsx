@@ -9,6 +9,8 @@ import Privacy from "./components/Privacy";
 import Navbar from "./components/NavBar";
 import Terms from "./components/Terms";
 import Faq from "./components/Faq";
+import Home from "./components/Home";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
@@ -17,11 +19,13 @@ function App() {
         <Navbar/>
         <main style={{ minHeight: "100vh", paddingTop: "70px" }}>
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/faq" element={<Faq />} />
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </main>
         <Footer />
