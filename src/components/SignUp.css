@@ -15,9 +15,8 @@ body {
 }
 
 .card {
-  margin: auto;
-  margin-top: 40px;
-  width: 380px;
+  margin: auto auto 40px;
+  width: 450px;
   background: rgba(9, 65, 138, 0.349);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -45,11 +44,9 @@ h1 {
   text-align: center;
 }
 
-.field {
-  margin-bottom: 16px;
-}
 
-.field input {
+ input {
+  margin-bottom: 16px;
   width: 100%;
   padding: 13px 16px;
   background: rgba(255, 255, 255, 0.18);
@@ -64,11 +61,11 @@ h1 {
     background 0.2s;
 }
 
-.field input::placeholder {
+ input::placeholder {
   color: rgba(255, 255, 255, 0.65);
 }
 
-.field input:focus {
+ input:focus {
   border-color: rgba(255, 255, 255, 0.65);
   background: rgba(255, 255, 255, 0.24);
 }

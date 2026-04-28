@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+.form-container {
+  width: 450px;
+  height: 480px;
+  margin: 100px auto;
+  padding: 20px 0px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: rgba(9, 65, 138, 0.349);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-container form {
+  width: 85%;
+}
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+  color: white;
+  padding: 15px 0px;
+}
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-container input {
+  width: 100%;
+  padding: 13px 16px;
+  margin-bottom: 15px;
+  height: 40px;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
+  color: #fff;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.form-container input::placeholder {
+  color: white;
+}
+.form-container button {
+  font-size: 18px;
+  margin-top: 8px;
+  width: 100%;
+  padding: 14px;
+  background: #2f6cf5;
+  border: none;
+  border-radius: 10px;
+  font-family: "Outfit", sans-serif;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(47, 108, 245, 0.5);
+}
+.form-container button:hover {
+  background: #1a55e0;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(47, 108, 245, 0.7);
+}
+.form-container p {
+  text-align: center;
+  margin-top: 10px;
+}
+.form-container a {
+  color: #1a55e0;
+  text-decoration: none;
+  font-weight: 600;
+}
+.form-container a:hover {
+  text-decoration: underline;
+}

@@ -11,6 +11,9 @@ import Terms from "./components/Terms";
 import Faq from "./components/Faq";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+
 
 function App() {
   return (
@@ -26,6 +29,8 @@ function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/dashboard" element={<Dashboard/>} />
           </Routes>
         </main>
         <Footer />
