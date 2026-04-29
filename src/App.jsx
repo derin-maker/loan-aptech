@@ -14,12 +14,11 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 
-
 function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar/>
+        <Navbar />
         <main style={{ minHeight: "100vh", paddingTop: "70px" }}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -29,8 +28,8 @@ function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login/>} />
-            <Route path="/dashboard" element={<Dashboard/>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </main>
         <Footer />
