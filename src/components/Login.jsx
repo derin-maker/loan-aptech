@@ -45,7 +45,7 @@ const Login = () => {
         throw new Error(data.error || "Login failed");
       }
 
-      alert("Login successful!.");
+      alert("Login successful!");
       navigate("/dashboard");
     } catch (err) {
       setError(err.message);
