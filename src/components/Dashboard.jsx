@@ -21,9 +21,12 @@ const Dashboard = () => {
       setError("");
 
       // Fetch current user
-      const userResponse = await fetch("http://localhost:5000/api/auth/me", {
-        credentials: "include",
-      });
+      const userResponse = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/me`,
+        {
+          credentials: "include",
+        },
+      );
 
       if (!userResponse.ok) {
         throw new Error("Not authenticated");
@@ -34,7 +37,7 @@ const Dashboard = () => {
 
       // Fetch dashboard stats
       const statsResponse = await fetch(
-        "http://localhost:5000/api/loans/dashboard/stats",
+        `${import.meta.env.VITE_API_URL}/api/loans/dashboard/stats`,
         {
           credentials: "include",
         },
@@ -47,7 +50,7 @@ const Dashboard = () => {
 
       // Fetch my loans
       const loansResponse = await fetch(
-        "http://localhost:5000/api/loans/my-loans",
+        `${import.meta.env.VITE_API_URL}/api/loans/my-loans`,
         {
           credentials: "include",
         },
@@ -68,7 +71,7 @@ const Dashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:5000/api/auth/logout", {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
         method: "POST",
         credentials: "include",
       });
