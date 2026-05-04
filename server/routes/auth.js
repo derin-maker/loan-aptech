@@ -29,9 +29,15 @@ router.post('/register', async (req, res) => {
       expiresIn: '30d'
     });
 
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 30 * 24 * 60 * 60 * 1000 
+    });
+
     res.status(201).json({
       success: true,
-      token,
       user: {
         id: user._id,
         name: user.name,
@@ -68,9 +74,16 @@ router.post('/login', async (req, res) => {
       expiresIn: '30d'
     });
 
+    // Set HTTP-only cookie
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+    });
+
     res.json({
       success: true,
-      token,
       user: {
         id: user._id,
         name: user.name,
@@ -90,6 +103,12 @@ router.get('/me', auth, async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
+  res.cookie('token', '', {
+    httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+  expires: new Date(0)
+  });
   res.json({ success: true, message: 'Logged out successfully' });
 });
 

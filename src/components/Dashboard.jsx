@@ -20,33 +20,29 @@ const Dashboard = () => {
       setLoading(true);
       setError("");
 
-      const token = localStorage.getItem("token");
-      if (!token) {
-        navigate("/login");
-        return;
-      }
-
-      const headers = { Authorization: `Bearer ${token}` };
-
       // Fetch current user
-      const userResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
-        headers,
-      });
+      const userResponse = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/me`,
+        {
+          credentials: "include",
+        },
+      );
 
       if (!userResponse.ok) {
-        localStorage.removeItem("token");
-        navigate("/login");
+        navigate("/login"); // only redirect on auth failure
         return;
       }
 
       const userData = await userResponse.json();
       setUser(userData.user);
 
-      // Fetch dashboard stats (won't redirect on failure)
+      // Stats and loans failures won't kick user out
       try {
         const statsResponse = await fetch(
           `${import.meta.env.VITE_API_URL}/api/loans/dashboard/stats`,
-          { headers }
+          {
+            credentials: "include",
+          },
         );
         if (statsResponse.ok) {
           const statsData = await statsResponse.json();
@@ -54,21 +50,21 @@ const Dashboard = () => {
         }
       } catch (_) {}
 
-      // Fetch my loans (won't redirect on failure)
+      // Fetch my loans
       try {
         const loansResponse = await fetch(
           `${import.meta.env.VITE_API_URL}/api/loans/my-loans`,
-          { headers }
+          {
+            credentials: "include",
+          },
         );
         if (loansResponse.ok) {
           const loansData = await loansResponse.json();
           setLoans(loansData.loans);
         }
       } catch (_) {}
-
     } catch (err) {
       console.error(err);
-      setError(err.message);
       navigate("/login");
     } finally {
       setLoading(false);
@@ -77,16 +73,14 @@ const Dashboard = () => {
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem("token");
       await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
+        credentials: "include",
       });
+      localStorage.removeItem("user");
+      navigate("/login");
     } catch (err) {
       console.error("Logout error:", err);
-    } finally {
-      localStorage.removeItem("token");
-      navigate("/login");
     }
   };
 

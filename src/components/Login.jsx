@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
- 
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -10,42 +9,47 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
- 
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
- 
+
     if (!formData.email || !formData.password) {
       setError("Incorrect email or password");
       return;
     }
     setLoading(true);
- 
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://loan-aptech.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
         },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+      );
       const data = await response.json();
- 
+
       if (!response.ok) {
         throw new Error(data.error || "Login failed");
       }
- 
-      localStorage.setItem("token", data.token);
+
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       alert("Login successful!");
       navigate("/dashboard");
     } catch (err) {
@@ -54,7 +58,7 @@ const Login = () => {
       setLoading(false);
     }
   };
- 
+
   return (
     <div className="form-container">
       <h1>Login</h1>
@@ -83,5 +87,5 @@ const Login = () => {
     </div>
   );
 };
- 
+
 export default Login;
