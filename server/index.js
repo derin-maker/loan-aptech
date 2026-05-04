@@ -11,8 +11,11 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', 
-  credentials: true 
+  origin: [
+    'https://project-eu3k3.vercel.app',  // your Vercel frontend
+    'http://localhost:5173'               // local dev
+  ],
+  credentials: true
 }));
 app.use(express.json());
 app.use(cookieParser()); 
