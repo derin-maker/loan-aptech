@@ -29,40 +29,42 @@ const Dashboard = () => {
       );
 
       if (!userResponse.ok) {
-        throw new Error("Not authenticated");
+        navigate("/login"); // only redirect on auth failure
+        return;
       }
 
       const userData = await userResponse.json();
       setUser(userData.user);
 
-      // Fetch dashboard stats
-      const statsResponse = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/loans/dashboard/stats`,
-        {
-          credentials: "include",
-        },
-      );
-
-      if (statsResponse.ok) {
-        const statsData = await statsResponse.json();
-        setStats(statsData.stats);
-      }
+      // Stats and loans failures won't kick user out
+      try {
+        const statsResponse = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/loans/dashboard/stats`,
+          {
+            credentials: "include",
+          },
+        );
+        if (statsResponse.ok) {
+          const statsData = await statsResponse.json();
+          setStats(statsData.stats);
+        }
+      } catch (_) {}
 
       // Fetch my loans
-      const loansResponse = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/loans/my-loans`,
-        {
-          credentials: "include",
-        },
-      );
-
-      if (loansResponse.ok) {
-        const loansData = await loansResponse.json();
-        setLoans(loansData.loans);
-      }
+      try {
+        const loansResponse = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/loans/my-loans`,
+          {
+            credentials: "include",
+          },
+        );
+        if (loansResponse.ok) {
+          const loansData = await loansResponse.json();
+          setLoans(loansData.loans);
+        }
+      } catch (_) {}
     } catch (err) {
       console.error(err);
-      setError(err.message);
       navigate("/login");
     } finally {
       setLoading(false);
