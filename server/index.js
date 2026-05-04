@@ -11,10 +11,17 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: [
-    'https://project-eu3k3.vercel.app',  // your Vercel frontend
-    'http://localhost:5173'               // local dev
-  ],
+  origin: (origin, callback) => {
+    const allowed = [
+      /https:\/\/project-eu3k3.*\.vercel\.app$/,  // all Vercel previews
+      /http:\/\/localhost:\d+$/                    // local dev
+    ];
+    if (!origin || allowed.some(pattern => pattern.test(origin))) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
