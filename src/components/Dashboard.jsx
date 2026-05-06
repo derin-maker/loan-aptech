@@ -64,7 +64,6 @@ const Dashboard = () => {
         }
       } catch (_) {}
     } catch (err) {
-      console.error(err);
       navigate("/login");
     } finally {
       setLoading(false);

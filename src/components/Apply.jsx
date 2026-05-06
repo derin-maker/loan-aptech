@@ -32,13 +32,13 @@ const Apply = () => {
       setLoading(true);
       setError("");
 
-      const userResponse = await fetch("http://localhost:5000/api/loans/apply", {
+      const userResponse = await fetch("https://loan-aptech.onrender.com/api/auth/user", {
         credentials: "include",
       });
       
 
       const loansResponse = await fetch(
-        "http://localhost:5000/api/loans/my-loans",
+        "https://loan-aptech.onrender.com/api/loans/my-loans",
         {
           credentials: "include",
         },
@@ -76,7 +76,7 @@ const Apply = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/loans/apply", {
+      const response = await fetch("https://loan-aptech.onrender.com/api/loans/apply", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // ✅ fix 4: was "Application/json"

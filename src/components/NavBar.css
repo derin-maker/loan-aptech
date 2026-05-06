@@ -72,6 +72,17 @@
   transition: background-color 0.3s;
 }
 
+.nav-logout-btn {
+  background-color: transparent;
+  color: #374151;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 7px 14px;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
 .btn-signup:hover {
   background-color: #2563eb !important;
 }
@@ -81,3 +92,4 @@
     display: none;
   }
 }
+
