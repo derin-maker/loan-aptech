@@ -98,7 +98,7 @@ const Apply = () => {
       }
 
       alert("Application Successful");
-      navigate("/loans");
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     } finally {
