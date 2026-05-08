@@ -11,7 +11,7 @@ const Apply = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    amount: "",
+    amount: "",   
     tenure: "",
     purpose: "", // ✅ fix 5: was "pupose"
   });

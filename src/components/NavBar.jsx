@@ -41,12 +41,15 @@ export default function NavBar() {
               <NavLink to="/login" className={({ isActive }) => isActive ? "active" : ""}>Login</NavLink>
             </li>
           )}
-        </ul>
 
-        <div className="navbar-cta">
+          <div className="navbar-cta">
           {/* 👇 Hide Sign Up when logged in */}
           {!user && <NavLink to="/signup" className="btn-signup">Sign Up</NavLink>}
         </div>
+
+        </ul>
+
+        
       </div>
     </nav>
   );
